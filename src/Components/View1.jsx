@@ -1,11 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { textfield_pair, textfield$ } from "./States";
-import { of } from "rxjs";
+import { of, asObservable } from "rxjs";
+import { map } from "rxjs/operators";
 
 export default function View1() {
   const [TextField, SetTextField] = useState(false);
   useEffect(() => {
-    textfield$.subscribe(res => SetTextField(res));
+    textfield$.asObservable().subscribe(res => {
+      console.log(1, res);
+      SetTextField(res);
+    });
   });
-  return <div>hi {console.log(TextField)}</div>;
+
+  const ChangeInput = val => {
+    console.log(val);
+    // textfield$.next({ textfield: evt.target.value });
+    textfield$.next({ textvalue: val });
+  };
+
+  return (
+    <div>
+      <h1>1</h1>
+      {console.log("TextField", TextField)}
+      <input
+        type="text"
+        name="textvalue"
+        id="textvalue"
+        value={TextField.textvalue}
+        onKeyUp={() => ChangeInput("a")}
+      />
+    </div>
+  );
 }
