@@ -12,7 +12,7 @@ export default function View3() {
   });
 
   const ChangeInput = evt => {
-    textfield$.next(evt.target.value);
+    textfield$.next({ v: evt.target.value });
   };
 
   return (
@@ -23,7 +23,7 @@ export default function View3() {
         type="text"
         name="textvalue"
         id="textvalue"
-        value={TextField}
+        value={TextField.v}
         onChange={ChangeInput}
       />
     </div>

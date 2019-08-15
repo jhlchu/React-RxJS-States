@@ -14,7 +14,7 @@ export default function View1() {
 
   const ChangeInput = evt => {
     console.log(evt.target.value);
-    textfield$.next(evt.target.value);
+    textfield$.next({ v: evt.target.value });
     // textfield$.next({ textfield: evt.target.value });
   };
 
@@ -26,7 +26,7 @@ export default function View1() {
         type="text"
         name="textvalue"
         id="textvalue"
-        value={TextField}
+        value={TextField.v}
         onChange={ChangeInput}
       />
     </div>
