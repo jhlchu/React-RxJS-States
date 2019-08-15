@@ -12,10 +12,10 @@ export default function View1() {
     });
   });
 
-  const ChangeInput = val => {
-    console.log(val);
+  const ChangeInput = evt => {
+    console.log(evt.target.value);
+    textfield$.next(evt.target.value);
     // textfield$.next({ textfield: evt.target.value });
-    textfield$.next({ textvalue: val });
   };
 
   return (
@@ -26,8 +26,8 @@ export default function View1() {
         type="text"
         name="textvalue"
         id="textvalue"
-        value={TextField.textvalue}
-        onKeyUp={() => ChangeInput("a")}
+        value={TextField}
+        onChange={ChangeInput}
       />
     </div>
   );
